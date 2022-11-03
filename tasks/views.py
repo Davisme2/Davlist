@@ -5,8 +5,10 @@ from tasks.models import Collection
 
 # Create your views here.
 def index(request):
-    context={}
-    context["collections"] = Collection.objects.order_by("name")
+    context = {}
+    collection = Collection.get_default_collection()
+
+    context["collections"] = Collection.objects.order_by("slug")
     return render(request, 'tasks/index.html', context=context)
 
 
